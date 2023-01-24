@@ -34,7 +34,7 @@ input.addEventListener("focus", function () {
 
 input.addEventListener("blur", function () {
   if (this.value === "") {
-    this.placeholder = "Como escolher o que pesquisar_";
+    this.placeholder = "Como escolher o que_";
     resetButton.classList.add("hidden");
   }
 });
@@ -42,6 +42,6 @@ input.addEventListener("blur", function () {
 resetButton.addEventListener("click", function (e) {
   e.preventDefault();
   input.value = "";
-  input.placeholder = "Como escolher o que pesquisar_";
+  input.placeholder = "Como escolher o que_";
   resetButton.classList.add("hidden");
 });
