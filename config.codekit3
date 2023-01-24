@@ -51,6 +51,14 @@
       "sC" : 3,
       "tS" : 0
     },
+    "\/fjn\/index.html" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/fjn\/index.html",
+      "oF" : 0
+    },
     "\/gomo\/gomodigital.js" : {
       "bF" : 0,
       "ft" : 64,
@@ -61,6 +69,14 @@
       "oF" : 0,
       "sC" : 3,
       "tS" : 0
+    },
+    "\/gomo\/index.html" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/gomo\/index.html",
+      "oF" : 0
     },
     "\/index.html" : {
       "cB" : 0,
