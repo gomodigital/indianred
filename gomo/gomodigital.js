@@ -1,5 +1,3 @@
-<script>
-
 $(document).ready(function () {
 
 	// Add extra padding and margin to elements near .card-cta
@@ -58,4 +56,3 @@ $(document).ready(function () {
 	});
   
 });
-</script>
