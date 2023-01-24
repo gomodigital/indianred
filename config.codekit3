@@ -9,6 +9,14 @@
   ],
   "creatorBuild" : "34448",
   "files" : {
+    "\/.gitignore" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/.gitignore",
+      "oF" : 0
+    },
     "\/fjn\/common.css" : {
       "aP" : 1,
       "bl" : 0,
@@ -29,6 +37,17 @@
       "oA" : 0,
       "oAP" : "\/fjn\/common.min.js",
       "oF" : 2,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/fjn\/common.min.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/fjn\/common.min-min.js",
+      "oF" : 0,
       "sC" : 3,
       "tS" : 0
     },
