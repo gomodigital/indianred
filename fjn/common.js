@@ -74,19 +74,19 @@ $(document).ready(function () {
 
 	// Add feature classes to article list items
 	$('.article-card').each(function () {
-		const articleFeaturedItem = $(this).find('.article-featured-item').val() === 'true';
-		const articleFeaturedItemOrder = $(this).find('.article-featured-item-order').val().toString();
+		const articleFeaturedItem = $(this).find('.article-featured-item');
+		const articleFeaturedItemOrder = $(this).find('.article-featured-item-order');
 
 		console.log(articleFeaturedItem);
 		console.log(articleFeaturedItemOrder);
 
-		if (articleFeaturedItem && articleFeaturedItemOrder >= 1 && articleFeaturedItemOrder <= 3) {
-			$('.article-list-item').each(function () {
-				if ($(this).index() === (articleFeaturedItemOrder - 1)) {
-					$(this).addClass(`feature-${articleFeaturedItemOrder}`);
-				}
-			});
-		}
+		// if (articleFeaturedItem && articleFeaturedItemOrder >= 1 && articleFeaturedItemOrder <= 3) {
+		// 	$('.article-list-item').each(function () {
+		// 		if ($(this).index() === (articleFeaturedItemOrder - 1)) {
+		// 			$(this).addClass(`feature-${articleFeaturedItemOrder}`);
+		// 		}
+		// 	});
+		// }
 	});
 
 });
