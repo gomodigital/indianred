@@ -78,10 +78,14 @@ $(document).ready(function () {
 		const articleCard = $(this).find('.article-card');
 		const featuredItem = articleCard.find('.article-featured-item');
 		if (featuredItem.val() === 'true') {
-			const featureOrder = parseInt(articleCard.attr('class').match(/article-featured-item-order-(\d+)/)[1]);
-			$(this).addClass(`feature-${featureOrder}`);
+			const orderClass = articleCard.attr('class').match(/article-featured-item-order-\d+/);
+			if (orderClass !== null) {
+				const featureOrder = parseInt(orderClass[0].match(/\d+/)[0]);
+				$(this).addClass(`feature-${featureOrder}`);
+			}
 		}
 	});
+
 
 	// Sort article list items by feature order
 	articleListItems.sort(function (a, b) {
