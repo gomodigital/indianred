@@ -33,9 +33,11 @@ $(document).ready(function () {
 		if ($(this).val().length > 0) {
 			searchResetButton.show();
 			searchSubmitButton.hide();
+			removeFeatureClasses();
 		} else {
 			searchResetButton.hide();
 			searchSubmitButton.show();
+			addFeatureClasses();
 		}
 	});
 
@@ -45,6 +47,7 @@ $(document).ready(function () {
 		searchInput.val('');
 		searchResetButton.hide();
 		searchSubmitButton.show();
+		addFeatureClasses();
 	});
 
 	// Add filter text to Content Types toggle
@@ -57,8 +60,10 @@ $(document).ready(function () {
 			if (index > -1) {
 				filterText.splice(index, 1);
 			}
+			removeFeatureClasses();
 		} else {
 			filterText.push($this.children('.filter-text').text());
+			addFeatureClasses();
 		}
 		if (filterText.length > 0 || searchInput.val() !== '') {
 			$('#toggle-content').text(filterText.join(' '));
@@ -70,12 +75,13 @@ $(document).ready(function () {
 	$('.jetboost-filter-none-qpnz').on('click', function () {
 		filterText.length = 0;
 		$('#toggle-content').text('Tipo de conteúdo');
+		addFeatureClasses();
 	});
 
-	// Add feature classes to article list items
 	function addFeatureClasses() {
 		$('.article-card').each(function () {
 			const articleFeaturedItem = $(this).find('.article-featured-item').attr('value') === 'true';
+			const articleFeaturedItemOrderElement = $(this).find('.article-featured-item-order');
 			const articleFeaturedItemOrder = parseInt($(this).find('.article-featured-item-order').data('order'));
 
 			if (articleFeaturedItem && articleFeaturedItemOrder <= 3 && articleFeaturedItemOrder >= 1) {
@@ -86,19 +92,10 @@ $(document).ready(function () {
 	}
 
 	function removeFeatureClasses() {
-		$('.article-list-item').removeClass('feature-1 feature-2 feature-3');
+		$('.article-list-item').removeClass(function (index, className) {
+			return (className.match(/(^|\s)feature-\S+/g) || []).join(' ');
+		});
 	}
 
-	if (window.location.search === '') {
-		addFeatureClasses();
-	}
-
-	window.onhashchange = function () {
-		if (window.location.search === '') {
-			removeFeatureClasses();
-			addFeatureClasses();
-		} else {
-			removeFeatureClasses();
-		}
-	}
+	addFeatureClasses();
 });
