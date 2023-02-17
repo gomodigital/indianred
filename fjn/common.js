@@ -74,13 +74,22 @@ $(document).ready(function () {
 
 	// Add feature classes to article list items
 	const articleCards = $('.article-list-collection .article-card');
-	articleCards.each(function () {
-		const articleFeaturedItem = $(this).find('.article-featured-item');
-		if (articleFeaturedItem.val() === 'true') {
-			const articleFeaturedItemOrder = $(this).find('.article-featured-item-order').val();
-			const articleListItem = $(this).closest('.article-list-item');
-			articleListItem.addClass(`feature-${articleFeaturedItemOrder}`);
+	// articleCards.each(function () {
+	// 	const articleFeaturedItem = $(this).find('.article-featured-item');
+	// 	if (articleFeaturedItem.val() === 'true') {
+	// 		const articleFeaturedItemOrder = $(this).find('.article-featured-item-order').val();
+	// 		const articleListItem = $(this).closest('.article-list-item');
+	// 		articleListItem.addClass(`feature-${articleFeaturedItemOrder}`);
+	// 	}
+	// });
+	$('.article-card').each(function () {
+		const articleFeaturedItem = $(this).find('.article-featured-item').val() === 'true';
+		const articleFeaturedItemOrder = parseInt($(this).find('.article-featured-item-order').val());
+		console.log(articleFeaturedItem, articleFeaturedItemOrder);
+		if (articleFeaturedItem) {
+			$(this).closest('.article-list-item').addClass(`feature-${articleFeaturedItemOrder}`);
 		}
 	});
+	
 
 });
