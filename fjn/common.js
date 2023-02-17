@@ -2,30 +2,31 @@
 const currentYear = new Date().getFullYear();
 $('.copyright-year').text(currentYear);
 
+// Get query string parameter value
+const urlParams = new URLSearchParams(window.location.search);
+const searchParam = urlParams.get('search');
+
+// Set up Library search logic
+const searchInput = $('#library-search-input');
+const searchResetButton = $('#library-search-reset');
+const searchSubmitButton = $('#library-search-submit');
+
+// Set searchInput value from query string, if present
+if (searchParam !== null) {
+    searchInput.val(searchParam);
+    searchResetButton.show();
+    searchSubmitButton.hide();
+} else {
+    searchResetButton.hide();
+    searchSubmitButton.show();
+}
+
 $(document).ready(function () {
 	// Open external links in a new tab
 	$('a[href^="http"]:not([href*="' + window.location.hostname + '"])').attr('target', '_blank');
 
-	// Get query string parameter value
-    const urlParams = new URLSearchParams(window.location.search);
-    const searchParam = urlParams.get('search');
-
-	// Set up Library search logic
-	const searchInput = $('#library-search-input');
-	const searchResetButton = $('#library-search-reset');
-	const searchSubmitButton = $('#library-search-submit');
+	// Change input type attribute to search
 	searchInput.attr('type', 'search');
-	searchResetButton.hide();
-
-	// Set searchInput value from query string, if present
-    if (searchParam !== null) {
-        searchInput.val(searchParam);
-        searchResetButton.show();
-        searchSubmitButton.hide();
-    } else {
-        searchResetButton.hide();
-        searchSubmitButton.show();
-    }
 
 	// Show/hide searchResetButton based on searchInput content
     searchInput.on('input', function() {
