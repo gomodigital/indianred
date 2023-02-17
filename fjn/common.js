@@ -90,19 +90,21 @@ $(document).ready(function () {
 	//   });
 	  
 // Add feature classes to article list items
-$('.article-card').filter(function() {
-	return $(this).find('.article-featured-item').val() === 'true';
-  }).each(function () {
-	const articleFeaturedItemOrder = parseInt($(this).find('.article-featured-item-order').val());
-  
-	//console.log(articleFeaturedItem);
-	console.log(articleFeaturedItemOrder);
-  
-	if (!isNaN(articleFeaturedItemOrder) && articleFeaturedItemOrder <= 3 && articleFeaturedItemOrder >= 1) {
+$('.article-card').each(function () {
+	const articleFeaturedItem = $(this).find('.article-featured-item').attr('value') === 'true';
+	const articleFeaturedItemOrderElement = $(this).find('.article-featured-item-order');
+	const articleFeaturedItemOrder = parseInt(articleFeaturedItemOrderElement.attr('value'));
+	
+	console.log('articleFeaturedItem:', articleFeaturedItem);
+	console.log('articleFeaturedItemOrder:', articleFeaturedItemOrder);
+	console.log('articleFeaturedItemOrderElement:', articleFeaturedItemOrderElement);
+	
+	if (articleFeaturedItem && articleFeaturedItemOrder <= 3 && articleFeaturedItemOrder >= 1) {
 	  const articleListItem = $(this).closest('.article-list-item');
 	  articleListItem.addClass(`feature-${articleFeaturedItemOrder}`);
 	}
   });
+  
   
 
 
