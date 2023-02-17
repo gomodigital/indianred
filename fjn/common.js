@@ -72,4 +72,24 @@ $(document).ready(function () {
 		$('#toggle-content').text('Tipo de conteúdo');
 	});
 
+	// Add feature classes to article list items
+	const articleListItems = $('.article-list-collection .article-list-item');
+	articleListItems.each(function () {
+		const articleCard = $(this).find('.article-card');
+		if (articleCard.find('.article-featured-item').val() === 'true') {
+			const featureOrder = articleCard.find('.article-featured-item-order').val();
+			$(this).addClass('feature-' + featureOrder);
+		}
+	});
+	
+	// Sort article list items by feature order
+	articleListItems.sort(function (a, b) {
+		const aOrder = parseInt($(a).attr('class').match(/feature-(\d+)/)[1]);
+		const bOrder = parseInt($(b).attr('class').match(/feature-(\d+)/)[1]);
+		return aOrder - bOrder;
+	});
+	
+	// Replace original article list with sorted items
+	const sortedList = $('<div></div>').append(articleListItems);
+	$('.article-list-collection').html(sortedList.html());
 });
