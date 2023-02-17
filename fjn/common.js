@@ -78,7 +78,7 @@ $(document).ready(function () {
 		const articleCard = $(this).find('.article-card');
 		const featuredItem = articleCard.find('.article-featured-item');
 		if (featuredItem.val() === 'true') {
-			const featureOrder = parseInt(articleCard.find('.article-featured-item-order').val());
+			const featureOrder = parseInt(articleCard.attr('class').match(/article-featured-item-order-(\d+)/)[1]);
 			$(this).addClass(`feature-${featureOrder}`);
 		}
 	});
