@@ -73,14 +73,15 @@ $(document).ready(function () {
 	});
 
 	// Add feature classes to article list items
-	const articleCards = $('.article-list-collection .article-card');
-	articleCards.each(function () {
+	$('.article-card').each(function () {
 		const articleFeaturedItem = $(this).find('.article-featured-item').val() === 'true';
-		//const articleFeaturedItemOrder = parseInt($(this).find('.article-featured-item-order').val());
-		const articleFeaturedItemOrder = Number($(this).find('.article-featured-item-order').val());
+		const articleFeaturedItemOrder = parseInt($(this).find('.article-featured-item-order').val());
 		if (articleFeaturedItem) {
-			const articleListItem = $(this).closest('.article-list-item');
-			articleListItem.addClass(`feature-${articleFeaturedItemOrder}`);
+			$('.article-list-item').each(function () {
+				if ($(this).index() === (articleFeaturedItemOrder - 1)) {
+					$(this).addClass(`feature-${articleFeaturedItemOrder}`);
+				}
+			});
 		}
 	});
 
