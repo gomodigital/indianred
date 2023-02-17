@@ -93,7 +93,7 @@ $(document).ready(function () {
 $('.article-card').each(function () {
 	const articleFeaturedItem = $(this).find('.article-featured-item').attr('value') === 'true';
 	const articleFeaturedItemOrderElement = $(this).find('.article-featured-item-order');
-	const articleFeaturedItemOrder = parseInt(articleFeaturedItemOrderElement.attr('value'));
+	const articleFeaturedItemOrder = parseInt($(this).find('.article-featured-item-order').data('order'));
 	
 	console.log('articleFeaturedItem:', articleFeaturedItem);
 	console.log('articleFeaturedItemOrder:', articleFeaturedItemOrder);
