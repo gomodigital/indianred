@@ -95,7 +95,7 @@ $('.article-card').filter(function() {
   }).each(function () {
 	const articleFeaturedItemOrder = parseInt($(this).find('.article-featured-item-order').val());
   
-	console.log(articleFeaturedItem);
+	//console.log(articleFeaturedItem);
 	console.log(articleFeaturedItemOrder);
   
 	if (!isNaN(articleFeaturedItemOrder) && articleFeaturedItemOrder <= 3 && articleFeaturedItemOrder >= 1) {
