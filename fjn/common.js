@@ -75,7 +75,8 @@ $(document).ready(function () {
 	// Add feature classes to article list items
 	$('.article-card').each(function () {
 		const articleFeaturedItem = $(this).find('.article-featured-item').val() === 'true';
-		const articleFeaturedItemOrder = parseInt($(this).find('.article-featured-item-order').val());
+		//const articleFeaturedItemOrder = parseInt($(this).find('.article-featured-item-order').val());
+		const articleFeaturedItemOrder = parseInt($(this).find('.article-featured-item-order').val(), 10);
 		if (articleFeaturedItem) {
 			const articleListItem = $(this).closest('.article-list-item');
 			articleListItem.addClass(`feature-${articleFeaturedItemOrder}`);
