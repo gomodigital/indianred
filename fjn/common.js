@@ -75,7 +75,7 @@ $(document).ready(function () {
 	// Add feature classes to article list items
 	$('.article-card').each(function () {
 		const articleFeaturedItem = $(this).find('.article-featured-item').val() === 'true';
-		const articleFeaturedItemOrder = parseInt($(this).find('.article-featured-item-order').val());
+		const articleFeaturedItemOrder = $(this).find('.article-featured-item-order').val();
 		if (articleFeaturedItem && articleFeaturedItemOrder >= 1 && articleFeaturedItemOrder <= 3) {
 			$('.article-list-item').each(function () {
 				if ($(this).index() === (articleFeaturedItemOrder - 1)) {
