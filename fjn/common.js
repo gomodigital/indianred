@@ -76,6 +76,10 @@ $(document).ready(function () {
 	$('.article-card').each(function () {
 		const articleFeaturedItem = $(this).find('.article-featured-item').val() === 'true';
 		const articleFeaturedItemOrder = $(this).find('.article-featured-item-order').val();
+
+		console.log(articleFeaturedItem);
+		console.log(articleFeaturedItemOrder);
+
 		if (articleFeaturedItem && articleFeaturedItemOrder >= 1 && articleFeaturedItemOrder <= 3) {
 			$('.article-list-item').each(function () {
 				if ($(this).index() === (articleFeaturedItemOrder - 1)) {
