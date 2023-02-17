@@ -1,47 +1,46 @@
-// Open external links
-let links = document.querySelectorAll("a");
+// Update footer year
+const currentYear = new Date().getFullYear();
+$('.copyright-year').text(currentYear);
 
-for (let i = 0; i < links.length; i++) {
-  links[i].onclick = function (event) {
-    if (
-      !(
-        this.href.startsWith("https://joseneves.org") ||
-        this.href.startsWith("https://www.joseneves.org") ||
-        this.href.startsWith("https://joseneves.webflow.io")
-      )
-    ) {
-      event.preventDefault();
-      window.open(this.href, "_blank");
-    }
-  };
-}
-// Library search logic
+$(document).ready(function () {
+	// Open external links in a new tab
+	$('a[href^="http"]:not([href*="' + window.location.hostname + '"])').attr('target', '_blank');
 
-let input = document.getElementById("search-query");
-let resetButton = document.getElementById("reset");
-input.type = "search";
-//resetButton.classList.add("hidden");
+	// Set up Library search logic
+	const searchInput = $('#library-search-input');
+	const searchResetButton = $('#library-search-reset');
+	const searchSubmitButton = $('#library-search-submit');
+	searchInput.attr('type', 'search');
 
-input.addEventListener("focus", function () {
-  if (this.value === "") {
-    this.placeholder = "";
-    resetButton.classList.add("hidden");
-  } else {
-    resetButton.classList.remove("hidden");
-    resetButton.classList.add("visible");
-  }
-});
+	searchResetButton.click(function (e) {
+		e.preventDefault();
+		searchInput.val('');
+		searchInput.attr('placeholder', 'Como escolher o que_');
+	});
 
-input.addEventListener("blur", function () {
-  if (this.value === "") {
-    this.placeholder = "Como escolher o que_";
-    resetButton.classList.add("hidden");
-  }
-});
+	// Add filter text to Content Types toggle
+	const filterText = [];
 
-resetButton.addEventListener("click", function (e) {
-  e.preventDefault();
-  input.value = "";
-  input.placeholder = "Como escolher o que_";
-  resetButton.classList.add("hidden");
+	$('.library-types-item').on('click', function () {
+		const $this = $(this);
+		if ($this.hasClass('jetboost-filter-active')) {
+			const index = filterText.indexOf($this.children('.filter-text').text());
+			if (index > -1) {
+				filterText.splice(index, 1);
+			}
+		} else {
+			filterText.push($this.children('.filter-text').text());
+		}
+		if (filterText.length > 0 || searchInput.val() !== '') {
+			$('#toggle-content').text(filterText.join(' '));
+		} else {
+			$('#toggle-content').text('Tipo de conteúdo');
+		}
+	});
+
+	$('.jetboost-filter-none-qpnz').on('click', function () {
+		filterText.length = 0;
+		$('#toggle-content').text('Tipo de conteúdo');
+	});
+
 });
