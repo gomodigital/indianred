@@ -11,18 +11,6 @@ const searchInput = $('#library-search-input');
 const searchResetButton = $('#library-search-reset');
 const searchSubmitButton = $('#library-search-submit');
 
-// Set searchInput value from query string, if present
-if (searchParam !== null) {
-	searchInput.val(searchParam);
-	searchResetButton.show();
-	searchSubmitButton.hide();
-	removeFeatureClasses();
-} else {
-	searchResetButton.hide();
-	searchSubmitButton.show();
-	addFeatureClasses();
-}
-
 function addFeatureClasses() {
 	$('.article-card').each(function () {
 		const articleFeaturedItem = $(this).find('.article-featured-item').attr('value') === 'true';
@@ -38,6 +26,14 @@ function addFeatureClasses() {
 
 function removeFeatureClasses() {
 	$('.article-list-item').removeClass('feature-1 feature-2 feature-3');
+}
+
+function updateFeatureClasses() {
+	if ($('.jetboost-filter-active').length > 0 || searchInput.val() !== '') {
+		removeFeatureClasses();
+	} else {
+		addFeatureClasses();
+	}
 }
 
 $(document).ready(function () {
@@ -58,6 +54,7 @@ $(document).ready(function () {
 			searchSubmitButton.show();
 			addFeatureClasses();
 		}
+		updateFeatureClasses();
 	});
 
 	// Add click event listener to searchResetButton
@@ -67,6 +64,7 @@ $(document).ready(function () {
 		searchResetButton.hide();
 		searchSubmitButton.show();
 		addFeatureClasses();
+		updateFeatureClasses();
 	});
 
 	// Add filter text to Content Types toggle
@@ -89,12 +87,16 @@ $(document).ready(function () {
 		} else {
 			$('#toggle-content').text('Tipo de conteúdo');
 		}
+		updateFeatureClasses();
 	});
 
 	$('.jetboost-filter-none-qpnz').on('click', function () {
 		filterText.length = 0;
 		$('#toggle-content').text('Tipo de conteúdo');
 		addFeatureClasses();
+		updateFeatureClasses();
 	});
 
+	// Initialize feature classes
+	updateFeatureClasses();
 });
