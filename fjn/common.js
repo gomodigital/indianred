@@ -76,7 +76,8 @@ $(document).ready(function () {
 	const articleCards = $('.article-list-collection .article-card');
 	articleCards.each(function () {
 		const articleFeaturedItem = $(this).find('.article-featured-item').val() === 'true';
-		const articleFeaturedItemOrder = parseInt($(this).find('.article-featured-item-order').val());
+		//const articleFeaturedItemOrder = parseInt($(this).find('.article-featured-item-order').val());
+		const articleFeaturedItemOrder = Number($(this).find('.article-featured-item-order').val());
 		if (articleFeaturedItem) {
 			const articleListItem = $(this).closest('.article-list-item');
 			articleListItem.addClass(`feature-${articleFeaturedItemOrder}`);
