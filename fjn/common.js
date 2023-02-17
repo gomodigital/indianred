@@ -75,10 +75,10 @@ $(document).ready(function () {
 	// Add feature classes to article list items
 	$('.article-card').each(function () {
 		const articleFeaturedItem = $(this).find('.article-featured-item');
-		const articleFeaturedItemOrder = $(this).find('.article-featured-item-order');
+		const articleFeaturedItemOrder = parseInt($(this).find('.article-featured-item-order'));
 
 		console.log(articleFeaturedItem.attr('value'));
-		console.log(parseInt(articleFeaturedItemOrder.attr('value')));
+		console.log(articleFeaturedItemOrder.attr('value'));
 
 		// if (articleFeaturedItem && articleFeaturedItemOrder >= 1 && articleFeaturedItemOrder <= 3) {
 		// 	$('.article-list-item').each(function () {
