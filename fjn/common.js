@@ -75,7 +75,7 @@ $(document).ready(function () {
 	// Add feature classes to article list items
 	$('.article-card').each(function () {
 		const articleFeaturedItem = $(this).find('.article-featured-item').val() === 'true';
-		const articleFeaturedItemOrder = $(this).find('.article-featured-item-order').val();
+		const articleFeaturedItemOrder = $(this).find('.article-featured-item-order').val().toString();
 
 		console.log(articleFeaturedItem);
 		console.log(articleFeaturedItemOrder);
