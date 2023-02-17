@@ -16,9 +16,11 @@ if (searchParam !== null) {
 	searchInput.val(searchParam);
 	searchResetButton.show();
 	searchSubmitButton.hide();
+	removeFeatureClasses();
 } else {
 	searchResetButton.hide();
 	searchSubmitButton.show();
+	addFeatureClasses();
 }
 
 $(document).ready(function () {
@@ -92,9 +94,7 @@ $(document).ready(function () {
 	}
 
 	function removeFeatureClasses() {
-		$('.article-list-item').removeClass(function (index, className) {
-			return (className.match(/(^|\s)feature-\S+/g) || []).join(' ');
-		});
+		$('.article-list-item').removeClass('feature-1 feature-2 feature-3');
 	}
 
 	addFeatureClasses();
