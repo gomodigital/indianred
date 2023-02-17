@@ -73,22 +73,36 @@ $(document).ready(function () {
 	});
 
 
-	$('.article-card').each(function () {
-		const articleFeaturedItem = $(this).find('.article-featured-item').attr('value') === 'true';
+	// $('.article-card').each(function () {
+	// 	const articleFeaturedItem = $(this).find('.article-featured-item').attr('value') === 'true';
 	  
-		if (articleFeaturedItem) {
-		  const articleFeaturedItemOrder = parseInt($(this).find('.article-featured-item-order').attr('value'));
+	// 	if (articleFeaturedItem) {
+	// 	  const articleFeaturedItemOrder = parseInt($(this).find('.article-featured-item-order').attr('value'));
 		  
-		  console.log(articleFeaturedItem);
-		  console.log(articleFeaturedItemOrder);
+	// 	  console.log(articleFeaturedItem);
+	// 	  console.log(articleFeaturedItemOrder);
 		  
-		  if (articleFeaturedItemOrder <= 3 && articleFeaturedItemOrder >= 1) {
-			const articleListItem = $(this).closest('.article-list-item');
-			articleListItem.addClass(`feature-${articleFeaturedItemOrder}`);
-		  }
-		}
-	  });
+	// 	  if (articleFeaturedItemOrder <= 3 && articleFeaturedItemOrder >= 1) {
+	// 		const articleListItem = $(this).closest('.article-list-item');
+	// 		articleListItem.addClass(`feature-${articleFeaturedItemOrder}`);
+	// 	  }
+	// 	}
+	//   });
 	  
+// Add feature classes to article list items
+$('.article-card').filter(function() {
+	return $(this).find('.article-featured-item').val() === 'true';
+  }).each(function () {
+	const articleFeaturedItemOrder = parseInt($(this).find('.article-featured-item-order').val());
+  
+	console.log(articleFeaturedItem);
+	console.log(articleFeaturedItemOrder);
+  
+	if (!isNaN(articleFeaturedItemOrder) && articleFeaturedItemOrder <= 3 && articleFeaturedItemOrder >= 1) {
+	  const articleListItem = $(this).closest('.article-list-item');
+	  articleListItem.addClass(`feature-${articleFeaturedItemOrder}`);
+	}
+  });
   
 
 
