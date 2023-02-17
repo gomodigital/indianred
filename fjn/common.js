@@ -6,6 +6,10 @@ $(document).ready(function () {
 	// Open external links in a new tab
 	$('a[href^="http"]:not([href*="' + window.location.hostname + '"])').attr('target', '_blank');
 
+	// Get query string parameter value
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchParam = urlParams.get('search');
+
 	// Set up Library search logic
 	const searchInput = $('#library-search-input');
 	const searchResetButton = $('#library-search-reset');
@@ -13,11 +17,13 @@ $(document).ready(function () {
 	searchInput.attr('type', 'search');
 	searchResetButton.hide();
 
-	searchResetButton.click(function (e) {
-		e.preventDefault();
-		searchInput.val('');
-		searchInput.attr('placeholder', 'Como escolher o que_');
-	});
+	// Set searchInput value from query string, if present
+    if (searchParam !== null) {
+        searchInput.val(searchParam);
+        searchResetButton.show();
+    } else {
+        searchResetButton.hide();
+    }
 
 	// Show/hide searchResetButton based on searchInput content
     searchInput.on('input', function() {
@@ -28,12 +34,12 @@ $(document).ready(function () {
         }
     });
 
-	// Add click event listener to searchResetButton
-	searchResetButton.on('click', function(e) {
-		e.preventDefault();
-		searchInput.val('');
-		searchResetButton.hide();
-	});	
+    // Add click event listener to searchResetButton
+    searchResetButton.on('click', function(e) {
+        e.preventDefault();
+        searchInput.val('');
+        searchResetButton.hide();
+    });
 
 	// Add filter text to Content Types toggle
 	const filterText = [];
