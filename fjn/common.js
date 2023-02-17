@@ -11,12 +11,29 @@ $(document).ready(function () {
 	const searchResetButton = $('#library-search-reset');
 	const searchSubmitButton = $('#library-search-submit');
 	searchInput.attr('type', 'search');
+	searchResetButton.hide();
 
 	searchResetButton.click(function (e) {
 		e.preventDefault();
 		searchInput.val('');
 		searchInput.attr('placeholder', 'Como escolher o que_');
 	});
+
+	// Show/hide searchResetButton based on searchInput content
+    searchInput.on('input', function() {
+        if ($(this).val().length > 0) {
+            searchResetButton.show();
+        } else {
+            searchResetButton.hide();
+        }
+    });
+
+	// Add click event listener to searchResetButton
+	searchResetButton.on('click', function(e) {
+		e.preventDefault();
+		searchInput.val('');
+		searchResetButton.hide();
+	});	
 
 	// Add filter text to Content Types toggle
 	const filterText = [];
