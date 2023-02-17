@@ -75,11 +75,13 @@ $(document).ready(function () {
 	// Add feature classes to article list items
 	$('.article-card').each(function () {
 		const articleFeaturedItem = $(this).find('.article-featured-item').val() === 'true';
-		//const articleFeaturedItemOrder = parseInt($(this).find('.article-featured-item-order').val());
-		const articleFeaturedItemOrder = parseInt($(this).find('.article-featured-item-order').val(), 10);
-		if (articleFeaturedItem) {
-			const articleListItem = $(this).closest('.article-list-item');
-			articleListItem.addClass(`feature-${articleFeaturedItemOrder}`);
+		const articleFeaturedItemOrder = parseInt($(this).find('.article-featured-item-order').val());
+		if (articleFeaturedItem && articleFeaturedItemOrder >= 1 && articleFeaturedItemOrder <= 3) {
+			$('.article-list-item').each(function () {
+				if ($(this).index() === (articleFeaturedItemOrder - 1)) {
+					$(this).addClass(`feature-${articleFeaturedItemOrder}`);
+				}
+			});
 		}
 	});
 
