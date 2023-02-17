@@ -77,8 +77,8 @@ $(document).ready(function () {
 		const articleFeaturedItem = $(this).find('.article-featured-item');
 		const articleFeaturedItemOrder = $(this).find('.article-featured-item-order');
 
-		console.log(articleFeaturedItem);
-		console.log(articleFeaturedItemOrder);
+		console.log(articleFeaturedItem.val());
+		console.log(articleFeaturedItemOrder.val());
 
 		// if (articleFeaturedItem && articleFeaturedItemOrder >= 1 && articleFeaturedItemOrder <= 3) {
 		// 	$('.article-list-item').each(function () {
