@@ -72,40 +72,33 @@ $(document).ready(function () {
 		$('#toggle-content').text('Tipo de conteúdo');
 	});
 
+	// Add feature classes to article list items
+	function addFeatureClasses() {
+		$('.article-card').each(function () {
+			const articleFeaturedItem = $(this).find('.article-featured-item').attr('value') === 'true';
+			const articleFeaturedItemOrder = parseInt($(this).find('.article-featured-item-order').data('order'));
 
-	// $('.article-card').each(function () {
-	// 	const articleFeaturedItem = $(this).find('.article-featured-item').attr('value') === 'true';
-	  
-	// 	if (articleFeaturedItem) {
-	// 	  const articleFeaturedItemOrder = parseInt($(this).find('.article-featured-item-order').attr('value'));
-		  
-	// 	  console.log(articleFeaturedItem);
-	// 	  console.log(articleFeaturedItemOrder);
-		  
-	// 	  if (articleFeaturedItemOrder <= 3 && articleFeaturedItemOrder >= 1) {
-	// 		const articleListItem = $(this).closest('.article-list-item');
-	// 		articleListItem.addClass(`feature-${articleFeaturedItemOrder}`);
-	// 	  }
-	// 	}
-	//   });
-	  
-// Add feature classes to article list items
-$('.article-card').each(function () {
-	const articleFeaturedItem = $(this).find('.article-featured-item').attr('value') === 'true';
-	const articleFeaturedItemOrderElement = $(this).find('.article-featured-item-order');
-	const articleFeaturedItemOrder = parseInt($(this).find('.article-featured-item-order').data('order'));
-	
-	console.log('articleFeaturedItem:', articleFeaturedItem);
-	console.log('articleFeaturedItemOrder:', articleFeaturedItemOrder);
-	console.log('articleFeaturedItemOrderElement:', articleFeaturedItemOrderElement);
-	
-	if (articleFeaturedItem && articleFeaturedItemOrder <= 3 && articleFeaturedItemOrder >= 1) {
-	  const articleListItem = $(this).closest('.article-list-item');
-	  articleListItem.addClass(`feature-${articleFeaturedItemOrder}`);
+			if (articleFeaturedItem && articleFeaturedItemOrder <= 3 && articleFeaturedItemOrder >= 1) {
+				const articleListItem = $(this).closest('.article-list-item');
+				articleListItem.addClass(`feature-${articleFeaturedItemOrder}`);
+			}
+		});
 	}
-  });
-  
-  
 
+	function removeFeatureClasses() {
+		$('.article-list-item').removeClass('feature-1 feature-2 feature-3');
+	}
 
+	if (window.location.search === '') {
+		addFeatureClasses();
+	}
+
+	window.onhashchange = function () {
+		if (window.location.search === '') {
+			removeFeatureClasses();
+			addFeatureClasses();
+		} else {
+			removeFeatureClasses();
+		}
+	}
 });
