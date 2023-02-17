@@ -23,6 +23,23 @@ if (searchParam !== null) {
 	addFeatureClasses();
 }
 
+function addFeatureClasses() {
+	$('.article-card').each(function () {
+		const articleFeaturedItem = $(this).find('.article-featured-item').attr('value') === 'true';
+		const articleFeaturedItemOrderElement = $(this).find('.article-featured-item-order');
+		const articleFeaturedItemOrder = parseInt($(this).find('.article-featured-item-order').data('order'));
+
+		if (articleFeaturedItem && articleFeaturedItemOrder <= 3 && articleFeaturedItemOrder >= 1) {
+			const articleListItem = $(this).closest('.article-list-item');
+			articleListItem.addClass(`feature-${articleFeaturedItemOrder}`);
+		}
+	});
+}
+
+function removeFeatureClasses() {
+	$('.article-list-item').removeClass('feature-1 feature-2 feature-3');
+}
+
 $(document).ready(function () {
 	// Open external links in a new tab
 	$('a[href^="http"]:not([href*="' + window.location.hostname + '"])').attr('target', '_blank');
@@ -80,22 +97,4 @@ $(document).ready(function () {
 		addFeatureClasses();
 	});
 
-	function addFeatureClasses() {
-		$('.article-card').each(function () {
-			const articleFeaturedItem = $(this).find('.article-featured-item').attr('value') === 'true';
-			const articleFeaturedItemOrderElement = $(this).find('.article-featured-item-order');
-			const articleFeaturedItemOrder = parseInt($(this).find('.article-featured-item-order').data('order'));
-
-			if (articleFeaturedItem && articleFeaturedItemOrder <= 3 && articleFeaturedItemOrder >= 1) {
-				const articleListItem = $(this).closest('.article-list-item');
-				articleListItem.addClass(`feature-${articleFeaturedItemOrder}`);
-			}
-		});
-	}
-
-	function removeFeatureClasses() {
-		$('.article-list-item').removeClass('feature-1 feature-2 feature-3');
-	}
-
-	addFeatureClasses();
 });
