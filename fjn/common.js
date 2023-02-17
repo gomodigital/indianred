@@ -21,16 +21,20 @@ $(document).ready(function () {
     if (searchParam !== null) {
         searchInput.val(searchParam);
         searchResetButton.show();
+        searchSubmitButton.hide();
     } else {
         searchResetButton.hide();
+        searchSubmitButton.show();
     }
 
 	// Show/hide searchResetButton based on searchInput content
     searchInput.on('input', function() {
         if ($(this).val().length > 0) {
             searchResetButton.show();
+            searchSubmitButton.hide();
         } else {
             searchResetButton.hide();
+            searchSubmitButton.show();
         }
     });
 
@@ -39,6 +43,7 @@ $(document).ready(function () {
         e.preventDefault();
         searchInput.val('');
         searchResetButton.hide();
+        searchSubmitButton.show();
     });
 
 	// Add filter text to Content Types toggle
