@@ -73,28 +73,14 @@ $(document).ready(function () {
 	});
 
 	// Add feature classes to article list items
-	const articleListItems = $('.article-list-collection .article-list-item');
-	articleListItems.each(function () {
-		const articleCard = $(this).find('.article-card');
-		const featuredItem = articleCard.find('.article-featured-item');
-		if (featuredItem.val() === 'true') {
-			const orderClass = articleCard.attr('class').match(/article-featured-item-order-\d+/);
-			if (orderClass !== null) {
-				const featureOrder = parseInt(orderClass[0].match(/\d+/)[0]);
-				$(this).addClass(`feature-${featureOrder}`);
-			}
+	const articleCards = $('.article-list-collection .article-card');
+	articleCards.each(function () {
+		const articleFeaturedItem = $(this).find('.article-featured-item');
+		if (articleFeaturedItem.val() === 'true') {
+			const articleFeaturedItemOrder = $(this).find('.article-featured-item-order').val();
+			const articleListItem = $(this).closest('.article-list-item');
+			articleListItem.addClass(`feature-${articleFeaturedItemOrder}`);
 		}
 	});
 
-
-	// Sort article list items by feature order
-	articleListItems.sort(function (a, b) {
-		const aOrder = parseInt($(a).attr('class').match(/feature-(\d+)/)[1]);
-		const bOrder = parseInt($(b).attr('class').match(/feature-(\d+)/)[1]);
-		return aOrder - bOrder;
-	});
-
-	// Replace original article list with sorted items
-	const sortedList = $('<div></div>').append(articleListItems);
-	$('.article-list-collection').html(sortedList.html());
 });
